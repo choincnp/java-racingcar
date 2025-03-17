@@ -5,7 +5,8 @@ import java.util.regex.Pattern;
 
 public class StringCalculator {
 
-    public static final String DELIMITER = ",|:";
+    private static final String DELIMITER = ",|:";
+    private static final Pattern CUSTOM_DELIMITER_PATTERN = Pattern.compile("//(.)\n(.*)");
 
     public static int calculate(String text) {
         String checkedText = emptyOrNullChecker(text);
@@ -19,7 +20,7 @@ public class StringCalculator {
         String[] values = splitter(text);
         int result = 0;
         for (String value : values) {
-            result += checkNegative(value.trim());
+            result += parsePositive(value.trim());
         }
         return result;
     }
@@ -38,7 +39,7 @@ public class StringCalculator {
      * 배열 분리 메서드
      */
     private static String[] splitter(String text) {
-        Matcher m = Pattern.compile("//(.)\n(.*)").matcher(text);
+        Matcher m = CUSTOM_DELIMITER_PATTERN.matcher(text);
         if (m.find()){
             String customDelimiter = m.group(1);
             return m.group(2).split(customDelimiter);
@@ -47,9 +48,9 @@ public class StringCalculator {
     }
 
     /**
-     * 음수 체크 메서드
+     * 숫자 파싱 메서드
      */
-    private static int checkNegative(String text) {
+    private static int parsePositive(String text) {
         if (Integer.parseInt(text) < 0){
             throw new RuntimeException();
         }

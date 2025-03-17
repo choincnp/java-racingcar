@@ -1,8 +1,8 @@
 package calculator;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -33,7 +33,7 @@ public class StringCalculatorTest {
     void emptyOrNullTest() {
         int resultEmpty = StringCalculator.calculate("");
         int resultOfNull = StringCalculator.calculate(null);
-        Assertions.assertAll(
+        assertAll(
             () -> assertThat(resultEmpty).isEqualTo(0),
             () -> assertThat(resultOfNull).isEqualTo(0)
         );
@@ -49,7 +49,7 @@ public class StringCalculatorTest {
     @Test
     @DisplayName("음수 입력 시 RuntimeException 발생")
     void negativeNumberTest() {
-        Assertions.assertAll(
+        assertAll(
             () -> assertThatThrownBy(
                 () -> StringCalculator.calculate("-1,2,3")
             ).isInstanceOf(RuntimeException.class),
