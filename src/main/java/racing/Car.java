@@ -31,9 +31,6 @@ public class Car {
 
     public String print() {
         stringBuilder = new StringBuilder();
-        for (int i=0; i<this.position; i++) {
-            stringBuilder.append("-");
-        }
-        return stringBuilder.toString();
+        return stringBuilder.append("-".repeat(Math.max(0, this.position))).toString();
     }
 }
