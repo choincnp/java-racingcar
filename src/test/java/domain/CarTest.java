@@ -69,7 +69,7 @@ public class CarTest {
     @DisplayName("랜덤 결과에 따른 차량 이동 - 무조건 실패")
     public void moveCarWithRandomResult() {
         Car pobi = new Car("pobi");
-        CustomizedRandom random = new CustomizedRandom(3);
+        CustomizedRandom random = new CustomizedRandomImpl(3);
         pobi.moveWithCondition(random.getResult());
         assertThat(pobi.getPositionValue()).isEqualTo(0);
     }

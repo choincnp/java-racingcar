@@ -9,7 +9,7 @@ public class Option {
 
     public Option(int round, int minBound, int maxBound) {
         this.round = round;
-        this.random = new CustomizedRandom(minBound, maxBound);
+        this.random = new CustomizedRandomImpl(minBound, maxBound);
     }
 
     public int getRound() {
